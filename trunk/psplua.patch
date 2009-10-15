@@ -1,0 +1,30 @@
+diff -ru lua-5.1.4/src/Makefile psplua-5.1.4/src/Makefile
+--- lua-5.1.4/src/Makefile	2008-01-19 13:37:58.000000000 -0600
++++ psplua-5.1.4/src/Makefile	2009-10-10 19:40:28.000000000 -0500
+@@ -5,12 +5,12 @@
+ # == CHANGE THE SETTINGS BELOW TO SUIT YOUR ENVIRONMENT =======================
+ 
+ # Your platform. See PLATS for possible values.
+-PLAT= none
++PLAT= psp
+ 
+-CC= gcc
++CC= psp-gcc
+ CFLAGS= -O2 -Wall $(MYCFLAGS)
+-AR= ar rcu
+-RANLIB= ranlib
++AR= psp-ar rcu
++RANLIB= psp-ranlib
+ RM= rm -f
+ LIBS= -lm $(MYLIBS)
+ 
+@@ -112,6 +112,9 @@
+ posix:
+ 	$(MAKE) all MYCFLAGS=-DLUA_USE_POSIX
+ 
++psp:
++	$(MAKE) $(LUA_A) MYCFLAGS="-I$(PSPSDK)/include -O2 -G0 -D_PSP_FW_VERSION=150"
++
+ solaris:
+ 	$(MAKE) all MYCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN" MYLIBS="-ldl"
+ 
