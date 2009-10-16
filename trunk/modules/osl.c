@@ -361,9 +361,9 @@ LUALIB_API int luaopen_oslua_general(lua_State *L) {
     lua_setfield(L, -2, "SWIZZLED");
     pushoslua_location(L, OSL_UNSWIZZLED);
     lua_setfield(L, -2, "UNSWIZZLED");
-    pushoslua_mbaction(L, OSL_MB_OK);
 
     /* oslua_mbaction */
+    pushoslua_mbaction(L, OSL_MB_OK);
     lua_setfield(L, -2, "MB_OK");
     pushoslua_mbaction(L, OSL_MB_CANCEL);
     lua_setfield(L, -2, "MB_CANCEL");
