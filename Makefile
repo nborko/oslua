@@ -70,8 +70,12 @@ $(OSLIB): $(OSLIB_SRC)
 $(OBJS): userdata.h oslua.h
 
 install: all
-	rm -r /media/disk/PSP/GAME5XX/test/*
-	cp -a EBOOT.PBP script.lua samples /media/disk/PSP/GAME5XX/test
+	rm -rf /media/disk/PSP/GAME5XX/OSLua
+	mkdir -p /media/disk/PSP/GAME5XX/OSLua
+	cp --parents EBOOT.PBP script.lua `find samples -name .svn -prune -o -type f -a -print` /media/disk/PSP/GAME5XX/OSLua
+
+dist:
+	(cd ..; rm -f oslua.zip; zip oslua.zip oslua/EBOOT.PBP oslua/script.lua; zip -gr oslua.zip oslua/samples -x \*.svn/\*)
 
 distclean: clean
 	rm -rf $(LUA_SRC) $(OSLIB_SRC)
