@@ -1,5 +1,8 @@
 local fontScale = 0.8
 
+osl.controller.SetKeyAutorepeatInit(40)
+osl.controller.SetKeyAutorepeatInterval(10)
+
 local pgfFont = osl.text.LoadFontFile("flash0:/font/ltn0.pgf")
 pgfFont:SetStyle(fontScale, osl.drawing.RGB(255, 255, 255), osl.drawing.RGBA(0, 0, 0, 0), osl.INTRAFONT_NONE)
 local fontHeight = pgfFont.charHeight * fontScale + 2
