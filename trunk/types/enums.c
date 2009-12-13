@@ -31,11 +31,11 @@ LUA_USERDATA(oslua_key);
 LUA_USERDATA(oslua_location);
 LUA_USERDATA(oslua_mbaction);
 LUA_USERDATA(oslua_pftype);
-LUA_USERDATA(oslua_sound);
 LUA_USERDATA(oslua_streamformat);
 
 int oslua_register_font(lua_State *L);
 int oslua_register_image(lua_State *L);
+int oslua_register_sound(lua_State *L);
 
 /* generic meta function for testing equality */
 static int oslua_generic_meta_eq(lua_State *L) {
@@ -136,15 +136,13 @@ int oslua_register_types(lua_State *L) {
     registeroslua_pftype(L);
     oslua_add_generic_meta(L);
 
-    registeroslua_sound(L);
-    oslua_add_generic_meta(L);
-
     registeroslua_streamformat(L);
     oslua_add_generic_meta(L);
 
     /* not enums, but register all other types here */
     oslua_register_font(L);
     oslua_register_image(L);
+    oslua_register_sound(L);
 
     return 1;
 }

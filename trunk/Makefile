@@ -22,7 +22,8 @@ OSLUA_OBJS= osl.o \
 
 TYPE_OBJS=  enums.o \
             font.o \
-            image.o
+            image.o \
+            sound.o
 
 MAIN_OBJS=  module_info.o \
             main.o \
