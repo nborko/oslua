@@ -18,7 +18,7 @@
 
 #include "oslua.h"
 
-/*
+/* Handled globally
 static int oslua_audio_InitAudio(lua_State *L) {
     lua_pushnumber(L, oslInitAudio());
     return 1;
@@ -124,7 +124,7 @@ static int oslua_audio_SetModSampleRate(lua_State *L) {
     return 1;
 }
 
-static int oslua_audio_SetSoundLoop(lua_State *L) {
+int oslua_audio_SetSoundLoop(lua_State *L) {
     if(lua_isboolean(L, 2)) {
         oslSetSoundLoop(checkoslua_sound(L, 1), lua_toboolean(L, 2));
     } else {
@@ -134,24 +134,24 @@ static int oslua_audio_SetSoundLoop(lua_State *L) {
     return 1;
 }
 
-static int oslua_audio_PlaySound(lua_State *L) {
+int oslua_audio_PlaySound(lua_State *L) {
     OSL_SOUND *s = checkoslua_sound(L, 1);
     int voice = luaL_checkint(L, 2);
     oslPlaySound(s, voice);
     return 1;
 }
 
-static int oslua_audio_StopSound(lua_State *L) {
+int oslua_audio_StopSound(lua_State *L) {
     oslStopSound(checkoslua_sound(L, 1));
     return 1;
 }
 
-static int oslua_audio_PauseSound(lua_State *L) {
+int oslua_audio_PauseSound(lua_State *L) {
     oslPauseSound(checkoslua_sound(L, 1), luaL_checkint(L, 2));
     return 1;
 }
 
-static int oslua_audio_DeleteSound(lua_State *L) {
+int oslua_audio_DeleteSound(lua_State *L) {
     oslDeleteSound(checkoslua_sound(L, 1));
     return 1;
 }
@@ -161,7 +161,7 @@ static int oslua_audio_AudioVSync(lua_State *L) {
     return 1;
 }
 
-static int oslua_audio_GetSoundChannel(lua_State *L) {
+int oslua_audio_GetSoundChannel(lua_State *L) {
     lua_pushinteger(L, oslGetSoundChannel(checkoslua_sound(L, 1)));
     return 1;
 }
@@ -181,7 +181,7 @@ static const luaL_reg oslua_audio_lib[] = {
     { "PlaySound", oslua_audio_PlaySound },
     { "StopSound", oslua_audio_StopSound },
     { "PauseSound", oslua_audio_PauseSound },
-    { "DeleteSound", oslua_audio_DeleteSound },
+    // handled by __gc { "DeleteSound", oslua_audio_DeleteSound },
     { "AudioVSync", oslua_audio_AudioVSync },
     { "GetSoundChannel", oslua_audio_GetSoundChannel },
     { NULL, NULL }
